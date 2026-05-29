@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Until Midnight ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#06010f;
+overflow-x:hidden;
+color:white;
+position:relative;
+}
+
+/* animated background */
+
+.bg{
+position:fixed;
+inset:0;
+z-index:-5;
+
+background:
+radial-gradient(circle at top left,#ff2f7d40,transparent 25%),
+radial-gradient(circle at top right,#7a5cff35,transparent 25%),
+radial-gradient(circle at bottom left,#ff8dc440,transparent 25%),
+linear-gradient(135deg,#06010f,#13051d,#090013);
+}
+
+/* stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation:twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+
+0%,100%{
+opacity:0.2;
+transform:scale(1);
+}
+
+50%{
+opacity:1;
+transform:scale(1.8);
+}
+
+}
+
+/* glowing blobs */
+
+.blob{
+position:fixed;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.18;
+z-index:-4;
+animation:float 10s ease-in-out infinite;
+}
+
+.blob1{
+width:400px;
+height:400px;
+background:#ff2f7d;
+top:-120px;
+left:-120px;
+}
+
+.blob2{
+width:500px;
+height:500px;
+background:#7a5cff;
+bottom:-180px;
+right:-150px;
+animation-delay:3s;
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-35px);
+}
+
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+bottom:-20px;
+pointer-events:none;
+z-index:-1;
+opacity:0.8;
+animation:fly linear forwards;
+}
+
+@keyframes fly{
+
+0%{
+transform:translateY(0) scale(0.5) rotate(0deg);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) scale(1.8) rotate(25deg);
+opacity:0;
+}
+
+}
+
+/* countdown screen */
+
+.countdown-screen{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+}
+
+.countdown-box{
+
+width:100%;
+max-width:950px;
+
+padding:70px 40px;
+
+border-radius:40px;
+
+background:rgba(255,255,255,0.06);
+
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 0 60px rgba(255,255,255,0.04),
+0 0 120px rgba(255,0,128,0.06);
+
+position:relative;
+overflow:hidden;
+
+}
+
+.countdown-box::before{
+content:"";
+position:absolute;
+inset:-2px;
+
+background:linear-gradient(
+45deg,
+#ff2f7d,
+#ff8dc4,
+#7a5cff,
+#ff2f7d
+);
+
+z-index:-1;
+filter:blur(20px);
+opacity:0.3;
+}
+
+.tag{
+letter-spacing:8px;
+font-size:0.8rem;
+color:#ffb7d5;
+margin-bottom:25px;
+opacity:0.8;
+text-transform:uppercase;
+}
+
+h1{
+font-size:clamp(3rem,8vw,7rem);
+line-height:1;
+margin-bottom:30px;
+
+background:linear-gradient(
+to right,
+#ff4f93,
+#ffb7d5,
+#ffffff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+max-width:760px;
+margin:auto;
+font-size:1.05rem;
+line-height:2.5;
+color:#f2dbe8;
+margin-bottom:60px;
+}
+
+/* timer */
+
+.timer{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:25px;
+}
+
+.time-card{
+
+padding:35px 20px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,0.05);
+
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.4s;
+
+}
+
+.time-card:hover{
+transform:translateY(-8px) scale(1.03);
+}
+
+.number{
+font-size:4rem;
+font-weight:800;
+
+background:linear-gradient(
+to bottom,
+#ffffff,
+#ffbdd8
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.label{
+margin-top:12px;
+letter-spacing:4px;
+font-size:0.82rem;
+color:#ffbdd8;
+text-transform:uppercase;
+}
+
+/* hidden content */
+
+.hidden{
+display:none;
+}
+
+/* sections */
+
+section{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:90px 20px;
+}
+
+.card{
+width:100%;
+max-width:1000px;
+
+padding:70px 50px;
+
+border-radius:40px;
+
+background:rgba(255,255,255,0.06);
+
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 0 60px rgba(255,255,255,0.04),
+0 0 120px rgba(255,0,128,0.06);
+
+position:relative;
+
+overflow:hidden;
+}
+
+.text{
+font-size:1.1rem;
+line-height:2.7;
+color:#f4dbe7;
+max-width:850px;
+}
+
+.quote{
+font-size:1.5rem;
+line-height:2;
+font-weight:600;
+
+background:linear-gradient(
+to right,
+#ff8dc4,
+#ffffff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.divider{
+height:1px;
+width:100%;
+background:linear-gradient(
+to right,
+transparent,
+rgba(255,255,255,0.3),
+transparent
+);
+
+margin:45px 0;
+}
+
+.end{
+text-align:center;
+}
+
+.end h2{
+font-size:3rem;
+margin-bottom:25px;
+
+background:linear-gradient(
+to right,
+#ff4f93,
+#ffffff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.end p{
+line-height:2.7;
+font-size:1.05rem;
+color:#f4dbe7;
+}
+
+.footer{
+margin-top:45px;
+font-size:1rem;
+line-height:2.5;
+color:#ffbdd8;
+}
+
+/* reveal animation */
+
+.reveal{
+opacity:0;
+transform:translateY(70px);
+transition:1.3s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* mobile */
+
+@media(max-width:700px){
+
+.card,
+.countdown-box{
+padding:45px 25px;
+}
+
+.text,
+.end p,
+.subtitle{
+font-size:0.96rem;
+line-height:2.3;
+}
+
+.quote{
+font-size:1.15rem;
+line-height:1.9;
+}
+
+.end h2{
+font-size:2rem;
+}
+
+.number{
+font-size:3rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<!-- COUNTDOWN -->
+
+<div class="countdown-screen" id="countdownScreen">
+
+<div class="countdown-box">
+
+<div class="tag">
+FINAL MOMENTS ❤️
+</div>
+
+<h1>
+Until Her<br>
+Birthday Ends
+</h1>
+
+<div class="subtitle">
+
+Every second tonight carries a memory now.
+
+One last countdown before this beautiful day becomes a forever memory ❤️
+
+</div>
+
+<div class="timer">
+
+<div class="time-card">
+<div class="number" id="hours">00</div>
+<div class="label">Hours</div>
+</div>
+
+<div class="time-card">
+<div class="number" id="minutes">00</div>
+<div class="label">Minutes</div>
+</div>
+
+<div class="time-card">
+<div class="number" id="seconds">00</div>
+<div class="label">Seconds</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HIDDEN WEBSITE -->
+
+<div id="mainContent" class="hidden">
+
+<section>
+
+<div class="card reveal">
+
+<div class="tag">
+11:59 PM ❤️
+</div>
+
+<h1>
+Before Your<br>
+Birthday Ends
+</h1>
+
+<div class="text">
+
+And just like that…
+
+your 21st birthday is almost over ❤️
+
+I really hope when you look back at today someday,
+you don’t just remember the gifts or websites or surprises.
+
+I hope you remember how loved you felt.
+
+Because honestly?
+
+Making you smile the entire day became my favorite part of today.
+
+Thank you for letting me be part of your 21st baby.
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="card reveal">
+
+<div class="quote">
+
+“Some birthdays are remembered for parties.<br>
+Some are remembered for gifts.<br><br>
+
+But I hope yours is remembered for love.” ❤️
+
+</div>
+
+<div class="divider"></div>
+
+<div class="text">
+
+From midnight to midnight,
+every message,
+every effort,
+every surprise,
+every tiny detail…
+
+was simply my heart trying to make yours happy.
+
+And honestly?
+
+If I could relive one day with you again,
+I think I would choose this one.
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="card reveal end">
+
+<h2>
+One Last Thing ❤️
+</h2>
+
+<p>
+
+00:00 may end your birthday…
+
+but I’ll still love you after it too.
+
+And years later,
+when life changes,
+when we grow older,
+when this day becomes a memory…
+
+I hope one thing always stays with you:
+
+that on your 21st birthday,
+you were loved completely.
+
+</p>
+
+<div class="footer">
+
+Forever proud of you ❤️
+
+— SJ
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<script>
+
+/* target date */
+
+const targetDate =
+new Date("May 30, 2026 00:00:00").getTime();
+
+/* countdown */
+
+function updateCountdown(){
+
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+if(distance <= 0){
+
+document.getElementById(
+"countdownScreen"
+).style.display = "none";
+
+document.getElementById(
+"mainContent"
+).classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+return;
+}
+
+const hours=Math.floor(
+(distance%(1000*60*60*24))
+/
+(1000*60*60)
+);
+
+const minutes=Math.floor(
+(distance%(1000*60*60))
+/
+(1000*60)
+);
+
+const seconds=Math.floor(
+(distance%(1000*60))
+/
+1000
+);
+
+document.getElementById("hours").innerText=
+String(hours).padStart(2,'0');
+
+document.getElementById("minutes").innerText=
+String(minutes).padStart(2,'0');
+
+document.getElementById("seconds").innerText=
+String(seconds).padStart(2,'0');
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+/* hearts */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+const hearts=["❤️","💖","💕","💘","✨"];
+
+heart.innerHTML=
+hearts[Math.floor(Math.random()*hearts.length)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=
+(Math.random()*26+14)+"px";
+
+heart.style.animationDuration=
+(Math.random()*4+5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+
+}
+
+setInterval(createHeart,180);
+
+/* stars */
+
+for(let i=0;i<120;i++){
+
+const star=document.createElement("div");
+
+star.classList.add("star");
+
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+
+star.style.animationDelay=
+Math.random()*5+"s";
+
+document.body.appendChild(star);
+
+}
+
+/* reveal */
+
+const reveals=document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll",()=>{
+
+reveals.forEach(reveal=>{
+
+const windowHeight=window.innerHeight;
+
+const top=reveal.getBoundingClientRect().top;
+
+if(top < windowHeight-100){
+
+reveal.classList.add("active");
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
