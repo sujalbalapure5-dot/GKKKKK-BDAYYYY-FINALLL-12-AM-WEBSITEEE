@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Until Midnight ❤️</title>
+<title>Before Your Birthday Ends ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -105,7 +105,7 @@ transform:translateY(-35px);
 
 }
 
-/* hearts */
+/* floating hearts */
 
 .heart{
 position:fixed;
@@ -134,145 +134,30 @@ opacity:0;
 
 }
 
-/* countdown screen */
+/* scroll indicator */
 
-.countdown-screen{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-text-align:center;
-}
-
-.countdown-box{
-
-width:100%;
-max-width:950px;
-
-padding:70px 40px;
-
-border-radius:40px;
-
-background:rgba(255,255,255,0.06);
-
-border:1px solid rgba(255,255,255,0.08);
-
-backdrop-filter:blur(20px);
-
-box-shadow:
-0 0 60px rgba(255,255,255,0.04),
-0 0 120px rgba(255,0,128,0.06);
-
-position:relative;
-overflow:hidden;
-
-}
-
-.countdown-box::before{
-content:"";
-position:absolute;
-inset:-2px;
-
-background:linear-gradient(
-45deg,
-#ff2f7d,
-#ff8dc4,
-#7a5cff,
-#ff2f7d
-);
-
-z-index:-1;
-filter:blur(20px);
-opacity:0.3;
-}
-
-.tag{
-letter-spacing:8px;
-font-size:0.8rem;
-color:#ffb7d5;
-margin-bottom:25px;
-opacity:0.8;
-text-transform:uppercase;
-}
-
-h1{
-font-size:clamp(3rem,8vw,7rem);
-line-height:1;
-margin-bottom:30px;
-
-background:linear-gradient(
-to right,
-#ff4f93,
-#ffb7d5,
-#ffffff
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.subtitle{
-max-width:760px;
-margin:auto;
-font-size:1.05rem;
-line-height:2.5;
-color:#f2dbe8;
-margin-bottom:60px;
-}
-
-/* timer */
-
-.timer{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:25px;
-}
-
-.time-card{
-
-padding:35px 20px;
-
-border-radius:30px;
-
-background:rgba(255,255,255,0.05);
-
-border:1px solid rgba(255,255,255,0.08);
-
-transition:0.4s;
-
-}
-
-.time-card:hover{
-transform:translateY(-8px) scale(1.03);
-}
-
-.number{
-font-size:4rem;
-font-weight:800;
-
-background:linear-gradient(
-to bottom,
-#ffffff,
-#ffbdd8
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.label{
-margin-top:12px;
+.scroll{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+font-size:0.9rem;
 letter-spacing:4px;
-font-size:0.82rem;
-color:#ffbdd8;
-text-transform:uppercase;
+color:#ffb7d5;
+animation:bounce 2s infinite;
+z-index:10;
 }
 
-/* hidden content */
+@keyframes bounce{
 
-.hidden{
-display:none;
+0%,100%{
+transform:translateX(-50%) translateY(0);
+}
+
+50%{
+transform:translateX(-50%) translateY(10px);
+}
+
 }
 
 /* sections */
@@ -283,7 +168,10 @@ display:flex;
 justify-content:center;
 align-items:center;
 padding:90px 20px;
+position:relative;
 }
+
+/* glass card */
 
 .card{
 width:100%;
@@ -308,12 +196,76 @@ position:relative;
 overflow:hidden;
 }
 
+/* glow border */
+
+.card::before{
+content:"";
+position:absolute;
+inset:-2px;
+
+background:linear-gradient(
+45deg,
+#ff2f7d,
+#ff8dc4,
+#7a5cff,
+#ff2f7d
+);
+
+z-index:-1;
+filter:blur(20px);
+opacity:0.3;
+}
+
+/* typography */
+
+.tag{
+letter-spacing:8px;
+font-size:0.82rem;
+color:#ffb7d5;
+margin-bottom:25px;
+opacity:0.8;
+text-transform:uppercase;
+}
+
+h1{
+font-size:clamp(3rem,8vw,7rem);
+line-height:1;
+margin-bottom:35px;
+
+background:linear-gradient(
+to right,
+#ff4f93,
+#ffb7d5,
+#ffffff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
 .text{
 font-size:1.1rem;
 line-height:2.7;
 color:#f4dbe7;
 max-width:850px;
 }
+
+/* divider */
+
+.divider{
+height:1px;
+width:100%;
+background:linear-gradient(
+to right,
+transparent,
+rgba(255,255,255,0.3),
+transparent
+);
+
+margin:45px 0;
+}
+
+/* floating quote */
 
 .quote{
 font-size:1.5rem;
@@ -330,21 +282,11 @@ to right,
 -webkit-text-fill-color:transparent;
 }
 
-.divider{
-height:1px;
-width:100%;
-background:linear-gradient(
-to right,
-transparent,
-rgba(255,255,255,0.3),
-transparent
-);
-
-margin:45px 0;
-}
+/* ending */
 
 .end{
 text-align:center;
+padding-top:30px;
 }
 
 .end h2{
@@ -366,6 +308,8 @@ line-height:2.7;
 font-size:1.05rem;
 color:#f4dbe7;
 }
+
+/* footer */
 
 .footer{
 margin-top:45px;
@@ -391,14 +335,12 @@ transform:translateY(0);
 
 @media(max-width:700px){
 
-.card,
-.countdown-box{
+.card{
 padding:45px 25px;
 }
 
 .text,
-.end p,
-.subtitle{
+.end p{
 font-size:0.96rem;
 line-height:2.3;
 }
@@ -410,10 +352,6 @@ line-height:1.9;
 
 .end h2{
 font-size:2rem;
-}
-
-.number{
-font-size:3rem;
 }
 
 }
@@ -428,55 +366,11 @@ font-size:3rem;
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
 
-<!-- COUNTDOWN -->
-
-<div class="countdown-screen" id="countdownScreen">
-
-<div class="countdown-box">
-
-<div class="tag">
-FINAL MOMENTS ❤️
+<div class="scroll">
+SCROLL ↓
 </div>
 
-<h1>
-Until Her<br>
-Birthday Ends
-</h1>
-
-<div class="subtitle">
-
-Every second tonight carries a memory now.
-
-One last countdown before this beautiful day becomes a forever memory ❤️
-
-</div>
-
-<div class="timer">
-
-<div class="time-card">
-<div class="number" id="hours">00</div>
-<div class="label">Hours</div>
-</div>
-
-<div class="time-card">
-<div class="number" id="minutes">00</div>
-<div class="label">Minutes</div>
-</div>
-
-<div class="time-card">
-<div class="number" id="seconds">00</div>
-<div class="label">Seconds</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- HIDDEN WEBSITE -->
-
-<div id="mainContent" class="hidden">
+<!-- section 1 -->
 
 <section>
 
@@ -514,6 +408,8 @@ Thank you for letting me be part of your 21st baby.
 
 </section>
 
+<!-- section 2 -->
+
 <section>
 
 <div class="card reveal">
@@ -549,6 +445,8 @@ I think I would choose this one.
 </div>
 
 </section>
+
+<!-- section 3 -->
 
 <section>
 
@@ -588,70 +486,7 @@ Forever proud of you ❤️
 
 </section>
 
-</div>
-
 <script>
-
-/* target date */
-
-const targetDate =
-new Date("May 30, 2026 00:00:00").getTime();
-
-/* countdown */
-
-function updateCountdown(){
-
-const now = new Date().getTime();
-
-const distance = targetDate - now;
-
-if(distance <= 0){
-
-document.getElementById(
-"countdownScreen"
-).style.display = "none";
-
-document.getElementById(
-"mainContent"
-).classList.remove("hidden");
-
-window.scrollTo(0,0);
-
-return;
-}
-
-const hours=Math.floor(
-(distance%(1000*60*60*24))
-/
-(1000*60*60)
-);
-
-const minutes=Math.floor(
-(distance%(1000*60*60))
-/
-(1000*60)
-);
-
-const seconds=Math.floor(
-(distance%(1000*60))
-/
-1000
-);
-
-document.getElementById("hours").innerText=
-String(hours).padStart(2,'0');
-
-document.getElementById("minutes").innerText=
-String(minutes).padStart(2,'0');
-
-document.getElementById("seconds").innerText=
-String(seconds).padStart(2,'0');
-
-}
-
-setInterval(updateCountdown,1000);
-
-updateCountdown();
 
 /* hearts */
 
@@ -702,7 +537,7 @@ document.body.appendChild(star);
 
 }
 
-/* reveal */
+/* reveal animation */
 
 const reveals=document.querySelectorAll(".reveal");
 
